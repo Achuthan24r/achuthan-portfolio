@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Briefcase, GraduationCap, Rocket, Calendar, MapPin } from 'lucide-react';
+import { Briefcase, GraduationCap, Rocket, Calendar, MapPin, Eye } from 'lucide-react';
+import ResumeViewer from './ResumeViewer';
 
 const Resume = () => {
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -178,6 +180,31 @@ const Resume = () => {
             </div>
           </div>
         </div>
+
+        {/* View Full Resume Button */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-16 text-center"
+        >
+          <button 
+            onClick={() => setIsViewerOpen(true)}
+            className="px-10 py-4 bg-primary hover:bg-primary-dark text-white rounded-full font-bold transition-all shadow-lg hover:shadow-primary/30 flex items-center gap-3 mx-auto group ring-4 ring-primary/10"
+          >
+            <Eye size={22} className="group-hover:scale-110 transition-transform" /> 
+            View Full Resume (PDF)
+          </button>
+          <p className="mt-4 text-slate-500 dark:text-slate-400 text-sm">
+            Interactive PDF viewer with download option
+          </p>
+        </motion.div>
+
+        {/* PDF Modal */}
+        <ResumeViewer 
+          isOpen={isViewerOpen} 
+          onClose={() => setIsViewerOpen(false)} 
+        />
       </div>
     </section>
   );
