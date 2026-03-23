@@ -11,52 +11,52 @@ const Skills = () => {
 
   const skillCategories = [
     {
-      title: "IoT & Automation",
-      icon: <Settings className="text-blue-500" size={24} />,
+      title: "Frontend Development",
+      icon: <Layout className="text-blue-500" size={24} />,
       skills: [
-        { name: "Sensor Integration", desc: "TCS34725 Color, Temp, Humidity", level: 90 },
-        { name: "Automation Systems", desc: "Control & Processing Logic", level: 85 },
-        { name: "Real-time Monitoring", desc: "Dashboard updates via websockets", level: 80 }
+        { name: "React.js", desc: "Hooks, Router, State Management", level: 90 },
+        { name: "Next.js", desc: "Server-side Rendering, App Router", level: 85 },
+        { name: "Tailwind CSS", desc: "Responsive utility-first styling", level: 90 }
       ],
       color: "bg-blue-500"
     },
     {
-      title: "Web Development",
-      icon: <Layout className="text-green-500" size={24} />,
+      title: "Backend & Database",
+      icon: <Database className="text-green-500" size={24} />,
       skills: [
-        { name: "React.js", desc: "Frontend UI, Hooks, State", level: 85 },
-        { name: "Node.js & Express", desc: "Backend APIs & Services", level: 75 },
-        { name: "MongoDB", desc: "Document Database Management", level: 70 }
+        { name: "Node.js & Express.js", desc: "RESTful APIs & Middleware", level: 80 },
+        { name: "MongoDB", desc: "NoSQL Database & Mongoose", level: 75 },
+        { name: "Firebase", desc: "Realtime DB, Firestore, Auth", level: 90 }
       ],
       color: "bg-green-500"
     },
     {
-      title: "Cloud & Tools",
-      icon: <Flame className="text-orange-500" size={24} />,
+      title: "IoT & Automation",
+      icon: <Settings className="text-orange-500" size={24} />,
       skills: [
-        { name: "Firebase", desc: "Hosting, Realtime DB, Auth", level: 90 },
-        { name: "Git & GitHub", desc: "Version Control", level: 85 }
+        { name: "Sensor Integration", desc: "TCS34725, Temperature, Humidity", level: 95 },
+        { name: "Real-time Monitoring", desc: "Live dashboard synchronization", level: 90 }
       ],
       color: "bg-orange-500"
     },
     {
-      title: "AI/ML (Beginner)",
+      title: "AI & ML",
       icon: <Bot className="text-purple-500" size={24} />,
       skills: [
-        { name: "ChatGPT API", desc: "Integration & fine-tuning", level: 80 },
-        { name: "Prompt Engineering", desc: "Optimizing AI queries", level: 85 },
-        { name: "Machine Learning", desc: "Basic concepts & models", level: 60 }
+        { name: "ChatGPT API", desc: "Custom GPTs & Tool Integration", level: 85 },
+        { name: "Prompt Engineering", desc: "Context optimization", level: 90 },
+        { name: "Machine Learning", desc: "Basic concepts (Beginner)", level: 65 }
       ],
       color: "bg-purple-500"
     },
     {
-      title: "Programming",
+      title: "Programming Tools",
       icon: <TerminalSquare className="text-yellow-500" size={24} />,
       skills: [
-        { name: "Python", desc: "Scripting & Data", level: 85 },
-        { name: "JavaScript", desc: "Web Logic", level: 90 },
-        { name: "C / C++", desc: "Arduino & Basics", level: 75 },
-        { name: "R", desc: "Statistical Computing", level: 65 }
+        { name: "JavaScript", desc: "Functional Programming", level: 90 },
+        { name: "Python & C", desc: "IoT & Scripting", level: 80 },
+        { name: "Git & Postman", desc: "Workflow & API Testing", level: 90 },
+        { name: "R", desc: "Statistical Basics", level: 70 }
       ],
       color: "bg-yellow-500"
     }

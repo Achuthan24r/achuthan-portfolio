@@ -96,7 +96,7 @@ const About = () => {
             className="order-1 md:order-2"
           >
             <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
-              I am a first-year Computer Science (IoT) student at Sethu Institute of Technology and a multi-time Hackathon Winner. I specialize in building end-to-end full-stack applications intertwined with smart IoT hardware.
+              I am a first-year Computer Science (IoT) student at Sethu Institute of Technology and a multi-time Hackathon Winner. I specialize in building Agri-Tech and Smart City solutions by integrating smart IoT hardware with modern full-stack web technologies. Currently focused on my startup venture and preparing for GSOC.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

@@ -19,6 +19,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Resume', href: '#resume' },
     { name: 'Achievements', href: '#achievements' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -27,7 +28,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'glass py-3' : 'bg-transparent py-5'}`}>
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         <a href="#home" className="text-2xl font-bold text-slate-800 dark:text-white">
-          Achuthan<span className="text-primary">.dev</span>
+          achu <span className="text-primary">.dev</span>
         </a>
 
         {/* Desktop Menu */}

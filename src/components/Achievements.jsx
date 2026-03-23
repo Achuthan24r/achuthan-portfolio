@@ -15,14 +15,22 @@ const Achievements = () => {
       title: "Hackathon Winner",
       description: "Secured first place for developing the Mushroom AI Barista, outperforming numerous competing teams with a comprehensive IoT and Full-Stack solution that tackles real-world agricultural problems.",
       icon: <Trophy className="text-yellow-500 w-12 h-12" />,
-      date: "Recent",
+      date: "2024",
       color: "bg-yellow-500/10 border-yellow-500/20"
     },
     {
       id: 2,
-      title: "Top Performer in Academics",
-      description: "Consistent high performance in core subjects including computer science and IoT logic design in the first year of the academic program.",
-      icon: <Award className="text-primary w-12 h-12" />,
+      title: "3 Internships Completed",
+      description: "Successfully completed 3 internships (2 in Web Development, 1 in IoT), working on real-world React.js applications and IoT sensor integration.",
+      icon: <Award className="text-blue-500 w-12 h-12" />,
+      date: "Ongoing",
+      color: "bg-blue-500/10 border-blue-500/20"
+    },
+    {
+      id: 3,
+      title: "Founded Agri-Tech Startup",
+      description: "Currently leading an Agri-Tech startup focused on smart mushroom automation, presently in the registration and funding stage.",
+      icon: <Star className="text-emerald-500 w-12 h-12" />,
       date: "Ongoing",
       color: "bg-emerald-500/10 border-emerald-500/20"
     }
