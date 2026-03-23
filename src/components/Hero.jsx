@@ -82,6 +82,13 @@ const Hero = () => {
               View Projects
             </a>
             <a 
+              href="https://drive.google.com/file/d/1F9NAfyk2rTIsyrz6ItjHUJYf3567KLlT/view?usp=drive_link" 
+              target="_blank" rel="noreferrer"
+              className="px-8 py-4 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 hover:border-primary dark:hover:border-primary rounded-full font-semibold transition-all shadow-md group w-full sm:w-auto justify-center flex items-center gap-2"
+            >
+              Download Resume <Download size={18} />
+            </a>
+            <a 
               href="https://github.com/Achuthan24r" 
               target="_blank" rel="noreferrer"
               className="p-4 bg-white dark:bg-dark-card text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:text-primary dark:hover:text-primary rounded-full transition-all shadow-md sm:flex hidden items-center justify-center"

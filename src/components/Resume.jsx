@@ -188,15 +188,25 @@ const Resume = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mt-16 text-center"
         >
-          <button 
-            onClick={() => setIsViewerOpen(true)}
-            className="px-10 py-4 bg-primary hover:bg-primary-dark text-white rounded-full font-bold transition-all shadow-lg hover:shadow-primary/30 flex items-center gap-3 mx-auto group ring-4 ring-primary/10"
-          >
-            <Eye size={22} className="group-hover:scale-110 transition-transform" /> 
-            View Full Resume (PDF)
-          </button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mx-auto w-fit">
+            <button 
+              onClick={() => setIsViewerOpen(true)}
+              className="px-8 py-4 bg-primary hover:bg-primary-dark text-white rounded-full font-bold transition-all shadow-lg hover:shadow-primary/30 flex items-center gap-3 group ring-4 ring-primary/10"
+            >
+              <Eye size={22} className="group-hover:scale-110 transition-transform" /> 
+              View Full Resume (PDF)
+            </button>
+            <a 
+              href="https://drive.google.com/file/d/1F9NAfyk2rTIsyrz6ItjHUJYf3567KLlT/view?usp=drive_link" 
+              target="_blank" rel="noreferrer"
+              className="px-8 py-4 bg-slate-800 dark:bg-white text-white dark:text-slate-800 rounded-full font-bold transition-all shadow-lg flex items-center gap-3 group"
+            >
+              <Download size={22} />
+              Download Resume
+            </a>
+          </div>
           <p className="mt-4 text-slate-500 dark:text-slate-400 text-sm">
-            Interactive PDF viewer with download option
+            Interactive PDF viewer or direct download link
           </p>
         </motion.div>
 
