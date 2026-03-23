@@ -132,4 +132,4 @@ const ResumeViewer = ({ isOpen, onClose }) => {
   );
 };
 
-export default Resume;
+export default ResumeViewer;
