@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Briefcase, GraduationCap, Rocket, Calendar, MapPin, Eye } from 'lucide-react';
+import { Briefcase, GraduationCap, Rocket, Calendar, MapPin, Eye, Download } from 'lucide-react';
 import ResumeViewer from './ResumeViewer';
 
 const Resume = () => {
