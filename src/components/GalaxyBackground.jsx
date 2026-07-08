@@ -36,8 +36,37 @@ const GalaxyBackground = () => {
       mouse.y = null;
     };
 
+    const handleTouchStart = (e) => {
+      const touch = e.touches[0];
+      mouse.x = touch.clientX;
+      mouse.y = touch.clientY;
+      for (let i = 0; i < 3; i++) {
+        sparkles.push(new Sparkle(touch.clientX, touch.clientY));
+      }
+    };
+
+    const handleTouchMove = (e) => {
+      const touch = e.touches[0];
+      mouse.x = touch.clientX;
+      mouse.y = touch.clientY;
+      for (let i = 0; i < 3; i++) {
+        sparkles.push(new Sparkle(touch.clientX, touch.clientY));
+      }
+      if (sparkles.length > 300) {
+        sparkles.shift();
+      }
+    };
+
+    const handleTouchEnd = () => {
+      mouse.x = null;
+      mouse.y = null;
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd);
 
     // Star Class
     class Star {
@@ -436,6 +465,9 @@ const GalaxyBackground = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
