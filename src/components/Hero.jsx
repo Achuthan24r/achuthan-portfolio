@@ -6,10 +6,10 @@ import { ChevronDown, Download, Github, Mail } from 'lucide-react';
 const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-1/4 left-10 w-72 h-72 bg-emerald-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-30 animate-blob"></div>
-      <div className="absolute top-1/3 right-10 w-72 h-72 bg-cyan-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-30 animate-blob animation-delay-2000"></div>
-      <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-primary rounded-full mix-blend-multiply filter blur-[128px] opacity-30 animate-blob animation-delay-4000"></div>
+      {/* Background decorations - cosmic glows */}
+      <div className="absolute top-1/4 left-10 w-72 h-72 bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full filter blur-[120px] pointer-events-none animate-pulse"></div>
+      <div className="absolute top-1/3 right-10 w-72 h-72 bg-purple-500/10 dark:bg-purple-500/5 rounded-full filter blur-[120px] pointer-events-none animate-pulse"></div>
+      <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-cyan-500/10 dark:bg-cyan-500/5 rounded-full filter blur-[120px] pointer-events-none animate-pulse"></div>
 
       <div className="container mx-auto px-6 z-10">
         <div className="max-w-4xl mx-auto text-center">

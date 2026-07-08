@@ -67,7 +67,7 @@ const Resume = () => {
   };
 
   return (
-    <section id="resume" className="py-24 bg-white dark:bg-dark-card/30 relative">
+    <section id="resume" className="py-24 bg-transparent relative">
       <div className="container mx-auto px-6 md:px-12">
         <div className="text-center mb-16">
           <motion.p 

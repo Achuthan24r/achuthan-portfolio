@@ -78,7 +78,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-24 bg-slate-50 dark:bg-slate-900">
+    <section id="skills" className="py-24 bg-transparent">
       <div className="container mx-auto px-6 md:px-12">
         <div className="text-center mb-16">
           <motion.p 

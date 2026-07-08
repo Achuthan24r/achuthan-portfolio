@@ -7,20 +7,20 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-slate-50 text-slate-900 transition-colors duration-300;
+    @apply bg-slate-50/70 text-slate-900 transition-colors duration-300;
   }
   .dark body {
-    @apply bg-dark-bg text-slate-100;
+    @apply bg-[#05070f] text-slate-100; /* Match galaxy canvas bg */
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/70 dark:bg-dark-card/70 backdrop-blur-md border border-white/20 dark:border-white/10;
+    @apply bg-white/30 dark:bg-black/40 backdrop-blur-lg border border-white/20 dark:border-white/10;
   }
   
   .glass-card {
-    @apply bg-white dark:bg-dark-card rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-black/50 border border-slate-100 dark:border-slate-800;
+    @apply bg-white/50 dark:bg-slate-900/50 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-white/10;
   }
   
   .text-gradient {

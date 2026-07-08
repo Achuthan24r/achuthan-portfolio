@@ -33,7 +33,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-white dark:bg-dark-card/50 relative">
+    <section id="about" className="py-24 bg-transparent relative">
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col items-center mb-16">
           <motion.p 

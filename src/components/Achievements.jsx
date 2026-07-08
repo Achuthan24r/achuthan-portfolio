@@ -37,10 +37,10 @@ const Achievements = () => {
   ];
 
   return (
-    <section id="achievements" className="py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
-      {/* Decorative blobs */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full mix-blend-multiply filter blur-[80px] opacity-70"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-[100px] opacity-70"></div>
+    <section id="achievements" className="py-24 bg-transparent relative overflow-hidden">
+      {/* Decorative space glows */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 dark:bg-primary/5 rounded-full filter blur-[80px] pointer-events-none animate-pulse"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/5 rounded-full filter blur-[100px] pointer-events-none animate-pulse"></div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="text-center mb-16">

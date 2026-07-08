@@ -7,12 +7,12 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-slate-900 pt-16 pb-8 border-t border-slate-800 relative z-10 text-slate-300 border-none">
+    <footer className="bg-black/30 dark:bg-black/50 backdrop-blur-md pt-16 pb-8 border-t border-white/10 relative z-10 text-slate-300">
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
           <div className="text-center md:text-left">
             <a href="#home" className="text-2xl font-bold text-white mb-2 inline-block">
-              Achuthan<span className="text-primary">.dev</span>
+              achu <span className="text-primary">.dev</span>
             </a>
             <p className="text-slate-400 max-w-sm mt-2">
               Building smart Agri-Tech solutions and full-stack applications with modern technology.
