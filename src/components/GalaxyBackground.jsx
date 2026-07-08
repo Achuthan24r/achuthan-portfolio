@@ -153,12 +153,76 @@ const GalaxyBackground = () => {
       }
     }
 
+    class ShootingStar {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        // Spawn from random positions (top-left or top-right quadrant)
+        this.x = Math.random() * width;
+        this.y = Math.random() * (height * 0.4); // spawn in top 40% of viewport
+        this.length = Math.random() * 80 + 50;
+        this.speed = Math.random() * 12 + 8;
+        // Direction angle: diagonal downwards (45 degrees / PI/4)
+        this.angle = (Math.PI / 4) + (Math.random() - 0.5) * 0.15; 
+        this.dx = Math.cos(this.angle) * this.speed;
+        this.dy = Math.sin(this.angle) * this.speed;
+        this.opacity = 1.0;
+        this.fade = Math.random() * 0.02 + 0.015;
+        this.active = false;
+      }
+
+      update() {
+        if (!this.active) {
+          // rare random trigger to spawn
+          if (Math.random() < 0.0008) {
+            this.active = true;
+          }
+          return;
+        }
+
+        this.x += this.dx;
+        this.y += this.dy;
+        this.opacity -= this.fade;
+
+        // Reset if transparent or out of bounds
+        if (this.opacity <= 0 || this.x > width || this.y > height) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        if (!this.active) return;
+
+        // Draw a glowing gradient trail
+        const gradient = ctx.createLinearGradient(
+          this.x, this.y,
+          this.x - this.dx * 6, this.y - this.dy * 6
+        );
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${this.opacity})`);
+        gradient.addColorStop(0.3, `rgba(168, 85, 247, ${this.opacity * 0.6})`); // fading purple/blue glow
+        gradient.addColorStop(1, 'transparent');
+
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = Math.random() * 1.5 + 1.0;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x - this.dx * 6, this.y - this.dy * 6);
+        ctx.stroke();
+      }
+    }
+
     // Create stars
     const starCount = Math.floor((width * height) / 3500); // responsive star count
     const stars = [];
     for (let i = 0; i < starCount; i++) {
       stars.push(new Star());
     }
+
+    // Create shooting stars (2 concurrent maximum instances)
+    const shootingStars = [new ShootingStar(), new ShootingStar()];
 
     // Create nebulae (emerald and purple colors matching portfolio theme)
     const nebulae = [
@@ -178,6 +242,8 @@ const GalaxyBackground = () => {
       for (let i = 0; i < newStarCount; i++) {
         stars.push(new Star());
       }
+      // Reset shooting stars
+      shootingStars.forEach(s => s.reset());
     };
 
     window.addEventListener('resize', handleResize);
@@ -198,6 +264,12 @@ const GalaxyBackground = () => {
       stars.forEach((star) => {
         star.update();
         star.draw();
+      });
+
+      // Render shooting stars on top of normal stars
+      shootingStars.forEach((sStar) => {
+        sStar.update();
+        sStar.draw();
       });
 
       animationFrameId = requestAnimationFrame(animate);
