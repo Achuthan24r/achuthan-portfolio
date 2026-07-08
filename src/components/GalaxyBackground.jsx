@@ -12,12 +12,18 @@ const GalaxyBackground = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Mouse coordinates
+    // Mouse coordinates and sparkles trail
     const mouse = { x: null, y: null, radius: 150 };
+    const sparkles = [];
 
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+      
+      // Spawn tiny twinkling stars at the cursor
+      if (Math.random() < 0.8) {
+        sparkles.push(new Sparkle(e.clientX, e.clientY));
+      }
     };
 
     const handleMouseLeave = () => {
@@ -293,6 +299,44 @@ const GalaxyBackground = () => {
       }
     }
 
+    class Sparkle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 2.5 + 1.0;
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.speedY = (Math.random() - 0.5) * 1.5 - 0.5; // slight upward float
+        this.opacity = 1.0;
+        this.decay = Math.random() * 0.02 + 0.015;
+        
+        // Match emerald primary or purple secondary space colors
+        const rand = Math.random();
+        if (rand < 0.5) {
+          this.color = '255, 255, 255'; // white sparkles
+        } else if (rand < 0.8) {
+          this.color = '16, 185, 129'; // emerald
+        } else {
+          this.color = '168, 85, 247'; // purple
+        }
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.opacity -= this.decay;
+      }
+
+      draw() {
+        ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = `rgba(${this.color}, 0.5)`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0; // reset
+      }
+    }
+
     // Create stars
     const starCount = Math.floor((width * height) / 3500); // responsive star count
     const stars = [];
@@ -364,6 +408,16 @@ const GalaxyBackground = () => {
       // Update and draw the cursor-following shooting star
       cursorStar.update();
       cursorStar.draw();
+
+      // Update and draw sparkles trail
+      for (let i = sparkles.length - 1; i >= 0; i--) {
+        const sparkle = sparkles[i];
+        sparkle.update();
+        sparkle.draw();
+        if (sparkle.opacity <= 0) {
+          sparkles.splice(i, 1);
+        }
+      }
 
       animationFrameId = requestAnimationFrame(animate);
     };
