@@ -12,12 +12,17 @@ const GalaxyBackground = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Mouse coordinates
+    // Mouse coordinates and history trail for shooting star effect
     const mouse = { x: null, y: null, radius: 150 };
+    const mouseHistory = [];
 
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+      mouseHistory.push({ x: e.clientX, y: e.clientY });
+      if (mouseHistory.length > 25) {
+        mouseHistory.shift();
+      }
     };
 
     const handleMouseLeave = () => {
@@ -271,6 +276,44 @@ const GalaxyBackground = () => {
         sStar.update();
         sStar.draw();
       });
+
+      // Draw cursor shooting star trail
+      if (mouseHistory.length > 1) {
+        for (let i = 0; i < mouseHistory.length - 1; i++) {
+          const p1 = mouseHistory[i];
+          const p2 = mouseHistory[i + 1];
+          const ratio = i / mouseHistory.length;
+          
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          
+          // Smooth transition from space purple tail to bright white/emerald head
+          const r = Math.floor(168 + (255 - 168) * ratio);
+          const g = Math.floor(85 + (255 - 85) * ratio);
+          const b = Math.floor(247 + (255 - 247) * ratio);
+          
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${ratio * 0.75})`;
+          ctx.lineWidth = ratio * 4.0;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        }
+
+        // Draw a bright white shooting star core at the cursor
+        const head = mouseHistory[mouseHistory.length - 1];
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = '#10b981'; // emerald aura glow
+        ctx.beginPath();
+        ctx.arc(head.x, head.y, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0; // reset
+      }
+
+      // Decay the cursor trail: shift out oldest point on each frame
+      if (mouseHistory.length > 0) {
+        mouseHistory.shift();
+      }
 
       animationFrameId = requestAnimationFrame(animate);
     };
