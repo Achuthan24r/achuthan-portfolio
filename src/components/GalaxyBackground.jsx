@@ -12,17 +12,12 @@ const GalaxyBackground = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Mouse coordinates and history trail for shooting star effect
+    // Mouse coordinates
     const mouse = { x: null, y: null, radius: 150 };
-    const mouseHistory = [];
 
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
-      mouseHistory.push({ x: e.clientX, y: e.clientY });
-      if (mouseHistory.length > 25) {
-        mouseHistory.shift();
-      }
     };
 
     const handleMouseLeave = () => {
@@ -219,6 +214,85 @@ const GalaxyBackground = () => {
       }
     }
 
+    class CursorStar {
+      constructor() {
+        this.x = width / 2;
+        this.y = height / 2;
+        this.vx = 0;
+        this.vy = 0;
+        this.history = [];
+        this.maxHistory = 20;
+        this.spring = 0.035; // spring constant
+        this.friction = 0.88; // friction / damping
+        this.size = 3.5;
+      }
+
+      update() {
+        if (mouse.x !== null && mouse.y !== null) {
+          // Accelerate towards mouse
+          const ax = (mouse.x - this.x) * this.spring;
+          const ay = (mouse.y - this.y) * this.spring;
+          
+          this.vx += ax;
+          this.vy += ay;
+          this.vx *= this.friction;
+          this.vy *= this.friction;
+          
+          this.x += this.vx;
+          this.y += this.vy;
+
+          this.history.push({ x: this.x, y: this.y });
+          if (this.history.length > this.maxHistory) {
+            this.history.shift();
+          }
+        } else {
+          // Decelerate and shift out history tail
+          this.vx *= this.friction;
+          this.vy *= this.friction;
+          this.x += this.vx;
+          this.y += this.vy;
+
+          if (this.history.length > 0) {
+            this.history.shift();
+          }
+        }
+      }
+
+      draw() {
+        if (this.history.length < 2) return;
+
+        // Draw spring trail with fading thickness & opacity
+        for (let i = 0; i < this.history.length - 1; i++) {
+          const p1 = this.history[i];
+          const p2 = this.history[i + 1];
+          const ratio = i / this.history.length;
+          
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          
+          // Color transitioning from space purple tail to emerald head
+          const r = Math.floor(168 + (16 - 168) * ratio);
+          const g = Math.floor(85 + (185 - 85) * ratio);
+          const b = Math.floor(247 + (129 - 247) * ratio);
+
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${ratio * 0.85})`;
+          ctx.lineWidth = ratio * 5.0;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        }
+
+        // Draw glowing head
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = '#10b981';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0; // reset
+      }
+    }
+
     // Create stars
     const starCount = Math.floor((width * height) / 3500); // responsive star count
     const stars = [];
@@ -228,6 +302,9 @@ const GalaxyBackground = () => {
 
     // Create shooting stars (2 concurrent maximum instances)
     const shootingStars = [new ShootingStar(), new ShootingStar()];
+
+    // Create the cursor-following shooting star
+    const cursorStar = new CursorStar();
 
     // Create nebulae (emerald and purple colors matching portfolio theme)
     const nebulae = [
@@ -249,6 +326,13 @@ const GalaxyBackground = () => {
       }
       // Reset shooting stars
       shootingStars.forEach(s => s.reset());
+      
+      // Reset cursor star
+      cursorStar.x = width / 2;
+      cursorStar.y = height / 2;
+      cursorStar.vx = 0;
+      cursorStar.vy = 0;
+      cursorStar.history = [];
     };
 
     window.addEventListener('resize', handleResize);
@@ -277,43 +361,9 @@ const GalaxyBackground = () => {
         sStar.draw();
       });
 
-      // Draw cursor shooting star trail
-      if (mouseHistory.length > 1) {
-        for (let i = 0; i < mouseHistory.length - 1; i++) {
-          const p1 = mouseHistory[i];
-          const p2 = mouseHistory[i + 1];
-          const ratio = i / mouseHistory.length;
-          
-          ctx.beginPath();
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
-          
-          // Smooth transition from space purple tail to bright white/emerald head
-          const r = Math.floor(168 + (255 - 168) * ratio);
-          const g = Math.floor(85 + (255 - 85) * ratio);
-          const b = Math.floor(247 + (255 - 247) * ratio);
-          
-          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${ratio * 0.75})`;
-          ctx.lineWidth = ratio * 4.0;
-          ctx.lineCap = 'round';
-          ctx.stroke();
-        }
-
-        // Draw a bright white shooting star core at the cursor
-        const head = mouseHistory[mouseHistory.length - 1];
-        ctx.fillStyle = '#ffffff';
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = '#10b981'; // emerald aura glow
-        ctx.beginPath();
-        ctx.arc(head.x, head.y, 2.5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowBlur = 0; // reset
-      }
-
-      // Decay the cursor trail: shift out oldest point on each frame
-      if (mouseHistory.length > 0) {
-        mouseHistory.shift();
-      }
+      // Update and draw the cursor-following shooting star
+      cursorStar.update();
+      cursorStar.draw();
 
       animationFrameId = requestAnimationFrame(animate);
     };
