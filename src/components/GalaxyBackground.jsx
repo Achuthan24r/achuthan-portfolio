@@ -20,9 +20,14 @@ const GalaxyBackground = () => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
       
-      // Spawn tiny twinkling stars at the cursor
-      if (Math.random() < 0.8) {
+      // Spawn multiple twinkling stars at the cursor for a richer trail
+      for (let i = 0; i < 3; i++) {
         sparkles.push(new Sparkle(e.clientX, e.clientY));
+      }
+      
+      // Cap max sparkles to avoid performance degradation
+      if (sparkles.length > 300) {
+        sparkles.shift();
       }
     };
 
@@ -228,8 +233,8 @@ const GalaxyBackground = () => {
         this.vy = 0;
         this.history = [];
         this.maxHistory = 20;
-        this.spring = 0.035; // spring constant
-        this.friction = 0.88; // friction / damping
+        this.spring = 0.085; // spring constant
+        this.friction = 0.84; // friction / damping
         this.size = 3.5;
       }
 
@@ -303,20 +308,22 @@ const GalaxyBackground = () => {
       constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = Math.random() * 2.5 + 1.0;
-        this.speedX = (Math.random() - 0.5) * 1.5;
-        this.speedY = (Math.random() - 0.5) * 1.5 - 0.5; // slight upward float
+        this.size = Math.random() * 4.0 + 1.5; // larger sparkles
+        this.speedX = (Math.random() - 0.5) * 2.0;
+        this.speedY = (Math.random() - 0.5) * 2.0 + 0.3; // drift slightly downwards like space dust
         this.opacity = 1.0;
-        this.decay = Math.random() * 0.02 + 0.015;
+        this.decay = Math.random() * 0.015 + 0.012; // decay slower so tail is longer
         
-        // Match emerald primary or purple secondary space colors
+        // Colors: mix of bright white, gold/yellow, emerald-green, and space-purple
         const rand = Math.random();
-        if (rand < 0.5) {
-          this.color = '255, 255, 255'; // white sparkles
-        } else if (rand < 0.8) {
-          this.color = '16, 185, 129'; // emerald
+        if (rand < 0.35) {
+          this.color = '255, 255, 255'; // white
+        } else if (rand < 0.6) {
+          this.color = '251, 191, 36'; // amber/gold
+        } else if (rand < 0.85) {
+          this.color = '16, 185, 129'; // emerald theme color
         } else {
-          this.color = '168, 85, 247'; // purple
+          this.color = '168, 85, 247'; // purple accent color
         }
       }
 
@@ -324,12 +331,14 @@ const GalaxyBackground = () => {
         this.x += this.speedX;
         this.y += this.speedY;
         this.opacity -= this.decay;
+        this.size *= 0.97; // shrink beautifully as they fade
       }
 
       draw() {
+        if (this.opacity <= 0 || this.size <= 0) return;
         ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = `rgba(${this.color}, 0.5)`;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `rgba(${this.color}, ${this.opacity})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
