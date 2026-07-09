@@ -92,7 +92,7 @@ const ResumeViewer = ({ isOpen, onClose }) => {
               <div className="mb-6">
                 <h2 className="text-base font-bold uppercase tracking-wider border-b border-slate-300 pb-1 mb-2 text-slate-950">Summary</h2>
                 <p className="text-slate-800 text-justify">
-                  First-year Computer Science (IoT) student and Hackathon Winner focused on Agri-Tech and Smart City solutions.
+                  Computer Science (IoT) student and Hackathon Winner focused on Agri-Tech and Smart City solutions.
                   Skilled in full-stack development and IoT automation systems. Preparing for GSOC and open-source contributions.
                 </p>
               </div>
@@ -185,7 +185,7 @@ const ResumeViewer = ({ isOpen, onClose }) => {
                 <h2 className="text-base font-bold uppercase tracking-wider border-b border-slate-300 pb-1 mb-2 text-slate-950">Education</h2>
                 <div className="text-slate-800">
                   <p className="font-bold">B.E. Computer Science (IoT)</p>
-                  <p>Sethu Institute of Technology (First Year)</p>
+                  <p>Sethu Institute of Technology</p>
                 </div>
               </div>
 

@@ -50,7 +50,7 @@ const Resume = () => {
   const education = {
     school: "Sethu Institute of Technology",
     degree: "Bachelor of Engineering – Computer Science (IoT)",
-    period: "First Year (Ongoing)",
+    period: "Ongoing",
     location: "Tamil Nadu, India",
     icon: <GraduationCap size={20} />
   };
