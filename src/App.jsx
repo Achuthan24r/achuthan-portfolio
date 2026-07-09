@@ -19,8 +19,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-transparent font-sans relative overflow-x-hidden text-white">
-      <GalaxyBackground />
-      <div className="relative z-10">
+      <div className="no-print">
+        <GalaxyBackground />
+      </div>
+      <div className="relative z-10 no-print">
         <Navbar />
         <main>
           <Hero />
@@ -35,7 +37,7 @@ function App() {
       </div>
       
       {/* Hidden print element containing the formatted CV */}
-      <div className="print-only hidden">
+      <div className="print-only">
         <ResumeDocument />
       </div>
     </div>

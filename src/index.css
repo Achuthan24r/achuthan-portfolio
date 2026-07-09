@@ -50,7 +50,7 @@
     background: white !important;
     color: black !important;
   }
-  #root > *:not(.print-only) {
+  .no-print {
     display: none !important;
   }
   .print-only {
