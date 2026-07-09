@@ -12,8 +12,8 @@ const About = () => {
   const cards = [
     {
       icon: <User className="text-primary mb-4" size={32} />,
-      title: "Who I Am",
-      desc: "First-year Computer Science (IoT) student at Sethu Institute of Technology."
+      title: "My Skills",
+      desc: "Skilled in full-stack web development (MERN, Next.js), IoT automation systems, and AI integration."
     },
     {
       icon: <Target className="text-primary mb-4" size={32} />,
