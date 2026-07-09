@@ -9,6 +9,7 @@ import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import GalaxyBackground from './components/GalaxyBackground';
+import ResumeDocument from './components/ResumeDocument';
 
 function App() {
   useEffect(() => {
@@ -31,6 +32,11 @@ function App() {
           <Contact />
         </main>
         <Footer />
+      </div>
+      
+      {/* Hidden print element containing the formatted CV */}
+      <div className="print-only hidden">
+        <ResumeDocument />
       </div>
     </div>
   );

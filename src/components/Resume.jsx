@@ -196,14 +196,13 @@ const Resume = () => {
               <Eye size={22} className="group-hover:scale-110 transition-transform" /> 
               View Full Resume (PDF)
             </button>
-            <a 
-              href="/resume.pdf" 
-              download="Achuthan_Resume.pdf"
+            <button 
+              onClick={() => window.print()}
               className="px-8 py-4 bg-slate-800 dark:bg-white text-white dark:text-slate-800 rounded-full font-bold transition-all shadow-lg flex items-center gap-3 group"
             >
               <Download size={22} />
               Download Resume
-            </a>
+            </button>
           </div>
           <p className="mt-4 text-slate-500 dark:text-slate-400 text-sm">
             Interactive PDF viewer or direct download link
