@@ -82,8 +82,8 @@ const Hero = () => {
               View Projects
             </a>
             <a 
-              href="https://drive.google.com/file/d/1F9NAfyk2rTIsyrz6ItjHUJYf3567KLlT/view?usp=drive_link" 
-              target="_blank" rel="noreferrer"
+              href="/resume.pdf" 
+              download="Achuthan_Resume.pdf"
               className="px-8 py-4 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 hover:border-primary dark:hover:border-primary rounded-full font-semibold transition-all shadow-md group w-full sm:w-auto justify-center flex items-center gap-2"
             >
               Download Resume <Download size={18} />

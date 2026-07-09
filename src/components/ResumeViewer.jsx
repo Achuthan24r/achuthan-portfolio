@@ -45,10 +45,15 @@ const ResumeViewer = ({ isOpen, onClose }) => {
             </div>
 
             <div className="flex items-center gap-2">
+              <button 
+                onClick={() => window.print()}
+                className="flex items-center gap-2 px-3 py-2 bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-750 hover:bg-slate-750 text-white rounded-lg text-sm font-semibold transition-colors shadow-sm"
+              >
+                <span>Print/Save CV</span>
+              </button>
               <a 
-                href="https://drive.google.com/file/d/1F9NAfyk2rTIsyrz6ItjHUJYf3567KLlT/view?usp=drive_link" 
-                target="_blank" 
-                rel="noreferrer"
+                href="/resume.pdf" 
+                download="Achuthan_Resume.pdf"
                 className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg text-sm font-semibold transition-colors shadow-sm"
               >
                 <Download size={16} /> <span>Download PDF</span>
@@ -67,6 +72,7 @@ const ResumeViewer = ({ isOpen, onClose }) => {
           <div className="flex-1 overflow-auto p-4 md:p-8 bg-slate-200 dark:bg-slate-900/60 flex justify-center custom-scrollbar">
             {/* CV Page Sheet */}
             <div 
+              id="print-area"
               style={{ transform: `scale(${scale})`, transformOrigin: 'top center' }} 
               className="w-full max-w-[800px] min-h-[1050px] bg-white text-slate-900 shadow-xl border border-slate-350 dark:border-slate-800 p-8 md:p-12 transition-transform duration-150 font-serif leading-relaxed h-fit text-sm relative"
             >

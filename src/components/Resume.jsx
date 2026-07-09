@@ -197,8 +197,8 @@ const Resume = () => {
               View Full Resume (PDF)
             </button>
             <a 
-              href="https://drive.google.com/file/d/1F9NAfyk2rTIsyrz6ItjHUJYf3567KLlT/view?usp=drive_link" 
-              target="_blank" rel="noreferrer"
+              href="/resume.pdf" 
+              download="Achuthan_Resume.pdf"
               className="px-8 py-4 bg-slate-800 dark:bg-white text-white dark:text-slate-800 rounded-full font-bold transition-all shadow-lg flex items-center gap-3 group"
             >
               <Download size={22} />
