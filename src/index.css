@@ -69,4 +69,8 @@
     border: none !important;
     transform: none !important;
   }
+  #print-area, #print-area * {
+    color: #000000 !important;
+    background: transparent !important;
+  }
 }
