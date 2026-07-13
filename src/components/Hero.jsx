@@ -81,12 +81,13 @@ const Hero = () => {
             >
               View Projects
             </a>
-            <button 
-              onClick={() => window.print()}
+            <a 
+              href="/resume.pdf" 
+              download="Achuthan_Resume.pdf"
               className="px-8 py-4 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 hover:border-primary dark:hover:border-primary rounded-full font-semibold transition-all shadow-md group w-full sm:w-auto justify-center flex items-center gap-2"
             >
               Download Resume <Download size={18} />
-            </button>
+            </a>
             <a 
               href="https://github.com/Achuthan24r" 
               target="_blank" rel="noreferrer"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ZoomIn, ZoomOut, Printer } from 'lucide-react';
+import { X, ZoomIn, ZoomOut, Printer, Download } from 'lucide-react';
 import ResumeDocument from './ResumeDocument';
 
 const ResumeViewer = ({ isOpen, onClose }) => {
@@ -48,10 +48,17 @@ const ResumeViewer = ({ isOpen, onClose }) => {
             <div className="flex items-center gap-2">
               <button 
                 onClick={() => window.print()}
+                className="flex items-center gap-2 px-3 py-2 bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-750 hover:bg-slate-750 text-white rounded-lg text-sm font-semibold transition-colors shadow-sm"
+              >
+                <Printer size={16} /> <span className="hidden sm:inline">Print CV</span>
+              </button>
+              <a 
+                href="/resume.pdf" 
+                download="Achuthan_Resume.pdf"
                 className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg text-sm font-semibold transition-colors shadow-sm"
               >
-                <Printer size={16} /> <span>Print / Save as PDF</span>
-              </button>
+                <Download size={16} /> <span>Download PDF</span>
+              </a>
               <button 
                 onClick={onClose}
                 className="p-2 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-lg transition-colors text-slate-500"
