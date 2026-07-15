@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
 import { ChevronDown, Download, Github, Mail } from 'lucide-react';
+import DownloadModal from './DownloadModal';
 
 const Hero = () => {
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden">
       {/* Background decorations - cosmic glows */}
@@ -81,13 +83,12 @@ const Hero = () => {
             >
               View Projects
             </a>
-            <a 
-              href="/resume.pdf" 
-              download="Achuthan_Resume.pdf"
+            <button 
+              onClick={() => setIsDownloadModalOpen(true)}
               className="px-8 py-4 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 hover:border-primary dark:hover:border-primary rounded-full font-semibold transition-all shadow-md group w-full sm:w-auto justify-center flex items-center gap-2"
             >
               Download Resume <Download size={18} />
-            </a>
+            </button>
             <a 
               href="https://github.com/Achuthan24r" 
               target="_blank" rel="noreferrer"
@@ -111,6 +112,8 @@ const Hero = () => {
           <ChevronDown size={24} />
         </a>
       </motion.div>
+      
+      <DownloadModal isOpen={isDownloadModalOpen} onClose={() => setIsDownloadModalOpen(false)} />
     </section>
   );
 };

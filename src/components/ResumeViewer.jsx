@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ZoomIn, ZoomOut, Printer, Download } from 'lucide-react';
 import ResumeDocument from './ResumeDocument';
+import DownloadModal from './DownloadModal';
 
 const ResumeViewer = ({ isOpen, onClose }) => {
   const [scale, setScale] = useState(1.0);
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   if (!isOpen) return null;
 
@@ -52,13 +54,12 @@ const ResumeViewer = ({ isOpen, onClose }) => {
               >
                 <Printer size={16} /> <span className="hidden sm:inline">Print CV</span>
               </button>
-              <a 
-                href="/resume.pdf" 
-                download="Achuthan_Resume.pdf"
+              <button 
+                onClick={() => setIsDownloadModalOpen(true)}
                 className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg text-sm font-semibold transition-colors shadow-sm"
               >
-                <Download size={16} /> <span>Download PDF</span>
-              </a>
+                <Download size={16} /> <span>Download Resume</span>
+              </button>
               <button 
                 onClick={onClose}
                 className="p-2 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-lg transition-colors text-slate-500"
@@ -75,6 +76,7 @@ const ResumeViewer = ({ isOpen, onClose }) => {
           </div>
         </motion.div>
       </motion.div>
+      <DownloadModal isOpen={isDownloadModalOpen} onClose={() => setIsDownloadModalOpen(false)} />
     </AnimatePresence>
   );
 };
